@@ -6,13 +6,12 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 10:22:20 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/09 13:34:29 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/10 17:44:16 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/includes/libft.h"
-#include <dirent.h>
-//#include "ft_ls.h"
+#include "ft_ls.h"
 
 int main( void )
 {
@@ -23,10 +22,11 @@ int main( void )
 	}					t_files;*/
     DIR* dirp;
     struct dirent* direntp;
+    //t_dir	*this;
 
-    dirp = opendir( "/goinfre/sminnaar/Desktop/ft_ls" );
+    dirp = opendir( "." );
     if( dirp == NULL ) {
-        perror( "can't open ~/sminnaar/Desktop" );
+        perror( "can't open Root ");
     } else {
         for(;;) {
             direntp = readdir( dirp );
@@ -36,7 +36,7 @@ int main( void )
         }
         closedir( dirp );
     }
-    dirp = opendir(".");
+    /*dirp = opendir(".");
     if (dirp == NULL)
     	return (ERROR);
     len = strlen(libft);
@@ -48,7 +48,7 @@ int main( void )
 			return (FOUND);
 		}
 	}
-	(void)closedir(dirp);
+	(void)closedir(dirp);*/
 
     return EXIT_SUCCESS;
 }

@@ -13,14 +13,13 @@
 #include "libft/includes/libft.h"
 #include <dirent.h>
 
-DIR *ft_ls_rec(DIR *direct);
+DIR *ft_ls_rec(char *direct);
 
 int	main()
-{
-	DIR	*dirp;
+{	
+	DIR *dir;
 
-	dirp = opendir("./Test");
-	ft_ls_rec(dirp);
+	dir = ft_ls_rec("./Test");
 }
 
 

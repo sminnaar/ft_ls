@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_flag_check.c                                 :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 15:18:10 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 14:05:12 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/17 15:50:22 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/17 16:06:10 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "includes/libft.h"
 
-int	ft_ls_flag_check(t_flags *flag)
+int	ft_intlen(long long int n)
 {
-	if (t_flags->l != 0 || t_flags->R != 0 || t_flags->a != 0
-			|| t_flags->r != 0 || t_flags-> t != 0)
-	{
+	size_t i;
+	
+	i = 0;
+	if (n < 0)
+		n *= -1;
+	if (n == 0)
 		return (1);
-	}
-	else
+	while (n > 0)
 	{
-		return (0);
+		n /= 10;
+		i++;
 	}
+	return (i);
 }

@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ls_lstput.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/04 12:10:02 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/04 13:42:09 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/17 15:32:53 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/17 15:36:44 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
-#include <fcntl.h>
+#include "ft_ls.h"
 
-int	main(void)
+void	ft_ls_lstput(t_data *using, t_flags *flag)
 {
-	char *s;
-	int fd;
-
-	fd = open("New.txt", O_WRONLY);
-	s = ft_getstr_fd(fd);
-	write(fd, s, ft_strlen(s));
-	ft_putendl(s);
-	return (0);
+	if (flag->l > 0)
+		ft_ls_long(using, flag);
+	ft_putendl(using->name);
 }

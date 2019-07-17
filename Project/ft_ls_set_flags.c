@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 15:36:19 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/11 15:46:17 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/17 12:21:24 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_flags	*ft_ls_set_flags(char *arg, t_flags *flags)
 {
 	size_t i;
 
-	i = 0;
+	i = -1;
 	if (arg == '-')
 	{
 		while (arg[++i] != '\0')

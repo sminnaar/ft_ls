@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/07/04 15:06:45 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/07/17 15:49:51 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ INC_DIR = ./includes
 OBJ_DIR = objs/
 
 SRC =	get_next_line.c \
+		ft_itoa_base.c \
+		ft_intlen.c \
 		ft_nl.c \
 		ft_dupdelstr.c \
 		ft_repnew.c \

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_flag_check.c                                 :+:      :+:    :+:   */
+/*   ft_ls_quit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 15:18:10 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 14:05:12 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/17 13:15:35 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_flag_check(t_flags *flag)
+int	ft_ls_exit(int error, char *str)
 {
-	if (t_flags->l != 0 || t_flags->R != 0 || t_flags->a != 0
-			|| t_flags->r != 0 || t_flags-> t != 0)
+	if (errorr == 1)
 	{
-		return (1);
+		ft_putstr("ft_ls: Illigal flag -- ");
+		ft_putendl(str);
+		ft_putendl("Usage: ft_ls [l, R, a, r and t] [File...]");
 	}
-	else
+	else if (error == 2)
 	{
-		return (0);
+		ft_putstr("ft_ls: ");
+		ft_putstr(str);
+		perror();
 	}
+	else if (error == 3)
+	{
+		ft_putendl("Memory allocation error");
+	}
+	exit(error);
 }

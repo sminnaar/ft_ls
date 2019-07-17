@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 15:20:31 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/04 15:04:57 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/17 15:57:03 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct		s_list
 }					t_list;
 
 int					get_next_line(const int fd, char **line);
+char				*ft_itoa_base(long int n, int base);
+int					ft_intlen(long long int n);
 void				ft_nl(void);
 char				*ft_dupdelstr(char *s1);
 char				*ft_repnew(char *s, int c, int d);

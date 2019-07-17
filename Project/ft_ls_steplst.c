@@ -1,26 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_flag_check.c                                 :+:      :+:    :+:   */
+/*   ft_ls_steplst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 15:18:10 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 14:05:12 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/17 14:27:18 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/17 15:40:19 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_flag_check(t_flags *flag)
-{
-	if (t_flags->l != 0 || t_flags->R != 0 || t_flags->a != 0
-			|| t_flags->r != 0 || t_flags-> t != 0)
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
+void	

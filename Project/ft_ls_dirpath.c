@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_flag_check.c                                 :+:      :+:    :+:   */
+/*   ft_ls_dirpath.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 15:18:10 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 14:05:12 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/17 12:54:19 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/17 13:59:45 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_flag_check(t_flags *flag)
+char	*ft_ls_dirpath(char *indir)
 {
-	if (t_flags->l != 0 || t_flags->R != 0 || t_flags->a != 0
-			|| t_flags->r != 0 || t_flags-> t != 0)
+	char	*path;
+	char	*temp;
+
+	path = NULL;
+	temp = NULL;
+	if (indir[0] != "." && indir[1] != "/")
 	{
-		return (1);
+		path = ft_strjoin("./", indir);
 	}
-	else
+	else if (path == NULL)
 	{
-		return (0);
+		path = ft_strdup(indir);
 	}
+	if (path[ft_strlen[path] - 1] != '/')
+	{
+		temp = path;
+		path = ft_strjoin(temp, "/");
+		if (temp)
+			free(temp);
+	}
+	return (path);
 }

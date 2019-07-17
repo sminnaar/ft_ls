@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 13:11:12 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/09 13:17:32 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/17 11:55:10 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -43,6 +43,9 @@ int main ()
     printf( "Value of errno: %d\n", errno );
   }
   else
+  {
+  	printf("No error\n");
     fclose (pFile);
+  }
   return 0;
 }

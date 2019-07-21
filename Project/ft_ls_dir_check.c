@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_quit.c                                       :+:      :+:    :+:   */
+/*   ft_ls_dir_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:33:32 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/21 14:35:48 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/21 14:39:10 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#inculde "ft_ls.h"
 
-int	ft_ls_quit(int error, char *str)
+int	ft_ls_dir_check(char *dir)
 {
-	if (errorr == 1)
+	struct stat	s;
+
+	if (stat(dir, &s) == 0)
 	{
-		ft_putstr("ft_ls: Illigal flag -- ");
-		ft_putendl(str);
-		ft_putendl("Usage: ft_ls [l, R, a, r and t] [File...]");
+		if (s.st_mode & S_IFDIR)
+			return (1);
+		else if (s.st_mode & S_IFREG)
+			return (0);
+		else
+			return (0);
+		
 	}
-	else if (error == 2)
-	{
-		ft_putstr("ft_ls: ");
-		ft_putstr(str);
-		perror();
-	}
-	else if (error == 3)
-	{
-		ft_putendl("Memory allocation error");
-	}
-	exit(error);
+	else
+		return (0);
 }

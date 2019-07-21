@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_quit.c                                       :+:      :+:    :+:   */
+/*   ft_ls_lstclr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:33:32 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/21 13:48:57 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/21 13:53:27 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_quit(int error, char *str)
+void	ft_ls_lstclr(t_data *data)
 {
-	if (errorr == 1)
+	t_data	*tmp;
+
+	while (data)
 	{
-		ft_putstr("ft_ls: Illigal flag -- ");
-		ft_putendl(str);
-		ft_putendl("Usage: ft_ls [l, R, a, r and t] [File...]");
+		tmp = data;
+		data = data->next;
+		if (tmp->date)
+			free(tmp->date);
+		if (tmp->name)
+			free(tmp->name);
+		if (tmp->group)
+			free(tmp->group);
+		if (tmp->owner)
+			free(tmp_owner);
+		tmp->next = NULL;
+		tmp->prev = NULL;
+		if (tmp)
+			free(tmp);
 	}
-	else if (error == 2)
-	{
-		ft_putstr("ft_ls: ");
-		ft_putstr(str);
-		perror();
-	}
-	else if (error == 3)
-	{
-		ft_putendl("Memory allocation error");
-	}
-	exit(error);
 }

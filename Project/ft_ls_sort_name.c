@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_quit.c                                       :+:      :+:    :+:   */
+/*   ft_ls_sort_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:33:32 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/21 15:11:30 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/21 15:19:12 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_quit(int error, char *str)
+void	ft_ls_sort_name(t_data **data)
 {
-	if (errorr == 1)
+	t_data	*using;
+	t_data	*forward;
+	int		swp;
+
+	swp = 1;
+	while (swp == 1)
 	{
-		ft_putstr("ft_ls: Illigal flag -- ");
-		ft_putendl(str);
-		ft_putendl("Usage: ft_ls [l, R, a, r and t] [File...]");
+		swp = 0;
+		using = *data;
+		while (using && using->next)
+		{
+			forward = using;
+			while (forward && forward->next)
+			{
+				if (ft_strcmp(forward->name, forward->next->name) > 0)
+				{
+					ft_ls_sort_switch(data, forward);
+					swap = 1;
+				}
+				forward = forward->next;
+			}
+			using = using->next;
+		}
 	}
-	else if (error == 2)
-	{
-		ft_putstr("ft_ls: ");
-		ft_putstr(str);
-		perror();
-	}
-	else if (error == 3)
-	{
-		ft_putendl("Memory allocation error");
-	}
-	exit(error);
 }

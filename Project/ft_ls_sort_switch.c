@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_quit.c                                       :+:      :+:    :+:   */
+/*   ft_ls_sort_switch.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:33:32 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/21 15:19:35 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/21 15:24:50 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	ft_ls_quit(int error, char *str)
+void	ft_ls_sort_switch(t_data **data, t_data *using)
 {
-	if (errorr == 1)
-	{
-		ft_putstr("ft_ls: Illigal flag -- ");
-		ft_putendl(str);
-		ft_putendl("Usage: ft_ls [l, R, a, r and t] [File...]");
-	}
-	else if (error == 2)
-	{
-		ft_putstr("ft_ls: ");
-		ft_putstr(str);
-		perror();
-	}
-	else if (error == 3)
-	{
-		ft_putendl("Memory allocation error");
-	}
-	exit(error);
+	t_data *next;
+	t_data *prev;
+	t_data *tmp;
+
+	prev = using->prev;
+	next = using->next;
+	tmp = next->next;
+	if (!prev)
+		*data = next;
+	else
+		prev->next = next;
+	if (tmp)
+		tmp->prev = using;
+	next->next = using;
+	next->prev = prev;
+	using->prev = next;
+	using->next = tmp;
 }

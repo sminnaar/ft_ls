@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_ls_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 12:10:15 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/23 15:35:09 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/23 14:37:57 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/23 15:08:39 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_LS_H
-# define FT_LS_H
 
-# include "libft/includes/libft.h"
-# include <dirent.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+#include "ft_ls.h"
 
-typedef struct	s_files
+void	ft_ls_flags(char *flags, char *path)
 {
-	char		*dir;
-}				t_files;
-
-void	ft_ls_open(char *path);
-void	ft_ls_flags(char *flags, char *path);
-void	ft_ls_open_a(char *path);
-int		ft_ls_isdir(char *name);
-
-#endif
+	/*if (++(*flags) == 'l')
+		ft_ls_long();
+	else if (++(*flags) == 'R')
+		ft_ls_recur();
+	else if (++(*flags) == 'r')
+		ft_ls_rev();*/
+	 if (++(*flags) == 'a')
+		ft_ls_open_a(path);
+	/*else if (++(*flags) == 't')
+		ft_ls_time();*/
+}

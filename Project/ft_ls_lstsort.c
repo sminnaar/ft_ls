@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 11:42:45 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 12:05:58 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:10:57 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_ls_rev_sort(t_data **data)
 			{
 				if (ft_strcmp(nextlst->name, nextlst->next->name) > 0)
 				{
-					ft_ls_switchsort(data, nextlst);
+					ft_ls_sort_switch(data, nextlst);
 					swap = 1;
 				}
 					nextlst = nextlst->next;
@@ -58,7 +58,7 @@ void	ft_ls_datesort(t_data **data)
 			{
 				if (nextlst->cdate < nextlst->next->cdate)
 				{
-					ft_ls_switchsort(data, nextlst);
+					ft_ls_sort_switch(data, nextlst);
 					swap = 1;
 				}
 				nextlst = nextlst->next;
@@ -86,7 +86,7 @@ void	ft_ls_rdatesort(t_data **data)
 			{
 				if (nextlst->cdate > nextlst->next->cdate)
 				{
-					ft_ls_switchsort(data, nextlst);
+					ft_ls_sort_switch(data, nextlst);
 					swap = 1;
 				}
 				nextlst = nextlst->next;
@@ -100,7 +100,7 @@ void	ft_ls_rdatesort(t_data **data)
 void	ft_ls_lstsort(t_data **data, t_flags *flag)
 {
 	if (flag->t == 0 && flag->r == 0)
-		ft_ls_namesort(data);
+		ft_ls_sort_name(data);
 	else if (flag->t > 0 && flag->r == 0)
 		ft_ls_datesort(data);
 	else if (flag->r > 0 && flag->t == 0)

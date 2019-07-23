@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 13:56:17 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 14:32:43 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:11:47 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_ls_print_mode(unsigned mode)
 
 	i = 0;
 	str = ft_itoa_base(mode, 8);
-	if (i = 0 && str[i] == '1')
+	if (i == 0 && str[i] == '1')
 	{
 		ft_putchar('-');
 		i = 3;

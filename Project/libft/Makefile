@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/07/17 15:49:51 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/07/22 14:49:43 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,11 +114,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_DIR)
-	@echo "$(OBJ) Cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME) Cleaned"
+	@echo "$(NAME) and obj Cleaned"
 
 re: fclean all
 

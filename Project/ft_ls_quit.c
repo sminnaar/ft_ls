@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 12:23:32 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:33:32 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:09:17 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_ls_quit(int error, char *str)
 {
-	if (errorr == 1)
+	if (error == 1)
 	{
 		ft_putstr("ft_ls: Illigal flag -- ");
 		ft_putendl(str);
@@ -24,7 +24,7 @@ int	ft_ls_quit(int error, char *str)
 	{
 		ft_putstr("ft_ls: ");
 		ft_putstr(str);
-		perror();
+		perror(" ");
 	}
 	else if (error == 3)
 	{

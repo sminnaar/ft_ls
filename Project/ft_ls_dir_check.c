@@ -6,11 +6,11 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 14:35:48 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 14:39:10 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:24:46 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#inculde "ft_ls.h"
+#include "ft_ls.h"
 
 int	ft_ls_dir_check(char *dir)
 {
@@ -24,7 +24,6 @@ int	ft_ls_dir_check(char *dir)
 			return (0);
 		else
 			return (0);
-		
 	}
 	else
 		return (0);

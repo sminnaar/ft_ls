@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 15:11:30 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 15:19:12 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:05:05 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_ls_sort_name(t_data **data)
 				if (ft_strcmp(forward->name, forward->next->name) > 0)
 				{
 					ft_ls_sort_switch(data, forward);
-					swap = 1;
+					swp = 1;
 				}
 				forward = forward->next;
 			}

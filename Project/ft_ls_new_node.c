@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 15:00:30 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/11 15:06:33 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 14:45:54 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_ls_new_node(t_data **using, t_data **prev)
 {
-	if (!using)
+	if (!*using)
 	{
-		*using = ft_memalloc(sizeof(t_data));
+		*using = malloc(sizeof(t_data));
 		(*using)->prev = *prev;
 		(*prev)->next = *using;
 	}

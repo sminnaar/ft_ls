@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_dirpath.c                                    :+:      :+:    :+:   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/17 12:54:19 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/22 13:18:29 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/22 15:05:42 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/22 15:28:00 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include <dirent.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <sys/stat.h>
 
-char	*ft_ls_dirpath(char *indir)
+int		main(int ac, char **av)
 {
-	char	*path;
-	char	*temp;
+	struct dirent	*dirp;
+	struct stat		stat;
+	DIR				*dir;
 
-	path = NULL;
-	temp = NULL;
-	if (indir[0] != '.' && indir[1] != '/')
+	if (ac != 2)
 	{
-		path = ft_strjoin("./", indir);
+		printf("Usage: a.out [File]\n");
+		return (0);
 	}
-	else if (path == NULL)
+	if (lstat(av[1], &stat) == -1)
 	{
-		path = ft_strdup(indir);
+		perror("lstat");
+		return (0);
 	}
-	if (path[ft_strlen(path) - 1] != '/')
+	dir = opendir(av[1]);
+	if (S_ISDIR(lstat(dirp->d_name, &stat)))
 	{
-		temp = path;
-		path = ft_strjoin(temp, "/");
-		if (temp)
-			free(temp);
+		
+		printf("Next dir %s", dirp->d_name);
 	}
-	return (path);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 13:48:57 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 13:53:27 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:11:26 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_ls_lstclr(t_data *data)
 		if (tmp->group)
 			free(tmp->group);
 		if (tmp->owner)
-			free(tmp_owner);
+			free(tmp->owner);
 		tmp->next = NULL;
 		tmp->prev = NULL;
 		if (tmp)

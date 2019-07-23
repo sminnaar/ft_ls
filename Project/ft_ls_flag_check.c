@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 15:18:10 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 14:05:12 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:13:03 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_ls_flag_check(t_flags *flag)
 {
-	if (t_flags->l != 0 || t_flags->R != 0 || t_flags->a != 0
-			|| t_flags->r != 0 || t_flags-> t != 0)
+	if (flag->l != 0 || flag->R != 0 || flag->a != 0
+			|| flag->r != 0 || flag->t != 0)
 	{
 		return (1);
 	}

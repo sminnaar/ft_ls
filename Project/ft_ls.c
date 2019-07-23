@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/21 12:11:41 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/21 13:38:23 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 14:19:22 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_ls_flags(t_flags *flag, char *dirp)
 {
 	DIR		*dir;
-	t_data	data;
+	t_data	*data;
 
-	if (!(data = ft_memalloc(sizeof(t_data))))
+	if (!(data = malloc(sizeof(t_data))))
 		ft_ls_quit(3, NULL);
 	if (flag->R > 0)
 	{
@@ -29,16 +29,16 @@ void	ft_ls_flags(t_flags *flag, char *dirp)
 		dir = opendir("./");
 		ft_ls_steplst(dir, data, flag, dirp);
 	}
-	if (dir = NULL)
+	if (dir == NULL)
 		ft_ls_quit(2, "./");
 	closedir(dir);
 	if (data != NULL)
-		ft_lstdel(data);
+		ft_ls_lstclr(data);
 }
 
-t_falgs	*ft_ls_argflags(char *ag, t_flags *flag)
+t_flags	*ft_ls_argflags(char *ag, t_flags *flag)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	if (ag[i] == '-')
@@ -66,10 +66,10 @@ t_falgs	*ft_ls_argflags(char *ag, t_flags *flag)
 
 void	ft_ls_flagdir(int ac, t_flags *flag, char **av)
 {
-	size_t i;
+	int i;
 
 	i = 2;
-	if (flag->R > 0 && ft_ls_dircheck(av[i]))
+	if (flag->R > 0 && ft_ls_dir_check(av[i]))
 	{
 		while (i < ac)
 		{
@@ -79,7 +79,7 @@ void	ft_ls_flagdir(int ac, t_flags *flag, char **av)
 	}
 	else while (i < ac)
 	{
-		if (ft_ls_dircheck(av[i])
+		if (ft_ls_dir_check(av[i]))
 			ft_ls_dir(flag, av[i++], ac);
 		else
 			ft_ls_filestat(flag, av[i++]);			
@@ -96,7 +96,7 @@ void	ft_ls_arg(char **av, t_flags *flag, int ac, int i)
 	else if (av[1][0] != '-')
 		while (i > ac)
 		{
-		if (ft_ls_dircheck(av[i]))
+		if (ft_ls_dir_check(av[i]))
 			ft_ls_dir(flag, av[i++], ac);
 		else
 			ft_ls_filestat(flag, av[i++]);
@@ -107,14 +107,14 @@ void	ft_ls_arg(char **av, t_flags *flag, int ac, int i)
 
 int		main(int ac, char **av)
 {
-	t_flags	flags;
+	t_flags	*flag;
 	int		i;
 
 	i = 0;
 	if (!(flag = ft_memalloc(sizeof(t_flags))))
 		ft_ls_quit(3, NULL);
 	ft_ls_clrflags(flag);
-	if (av > 1)
+	if (ac > 1)
 		ft_ls_arg(av, flag, ac, i);
 	else
 		ft_ls_flags(flag, ".");

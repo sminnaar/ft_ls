@@ -6,16 +6,16 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 13:00:24 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 13:59:05 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/07/22 13:26:29 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_ls_dir(t_flags flag, char *indir, int argc)
+void	ft_ls_dir(t_flags *flag, char *indir, int argc)
 {
 	DIR		*ndir;
-	t_data	data;
+	t_data	*data;
 
 	if (ft_ls_flag_check(flag))
 		--argc;
@@ -31,5 +31,5 @@ void	ft_ls_dir(t_flags flag, char *indir, int argc)
 	ft_ls_steplst(ndir, data, flag, indir);
 	closedir(ndir);
 	if (data)
-		ft_ls_lstclear(data);
+		ft_ls_lstclr(data);
 }

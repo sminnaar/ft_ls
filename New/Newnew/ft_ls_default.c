@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_ls_default.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 12:10:15 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/25 11:41:47 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/25 16:42:34 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/25 16:58:37 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_LS_H
-# define FT_LS_H
 
-# include "libft/includes/libft.h"
-# include <dirent.h>
-# include <sys/types.h>
-# include <sys/stat.h>
+#include "ft_ls.h"
 
-typedef struct	s_files
+void	ft_ls_default(char *path)
 {
-	char		*dir;
-}				t_files;
+	DIR				*dir;
+	struct dirent	*d;
 
-void	ft_ls_open(char *path);
-void	ft_ls_flags(char *flags, char *path);
-void	ft_ls_open_a(char *path);
-int		ft_ls_isdir(char *name);
-
-#endif
+	dir = opendir(path);
+	while ((d = readdir(dir)) != NULL)
+	{
+		if ((d->d_name) != NULL && d->d_name[0] != '.')
+			ft_ls_print(d->d_name);
+	}
+	closedir(dir);
+}

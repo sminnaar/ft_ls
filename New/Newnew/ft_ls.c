@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_isdir.c                                      :+:      :+:    :+:   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 11:56:40 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/25 11:32:36 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/25 12:41:07 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/25 16:51:49 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_ls_isdir(char *name)
+void	ft_ls_open_arg(char *path)
 {
-	struct stat *s;
-	
-	if (!(s = malloc(sizeof(stat))))
-		perror("stat");
-	if (lstat(name, s) == 0)
+	DIR				*mydir;
+	struct dirent	*dir;
+
+	mydir = opendir(path);
+	while ((dir = readdir(mydir)) != NULL)
 	{
-		if (s->st_mode & S_IFDIR)
-			return (1);
-		else if (s->st_mode & S_IFREG)
-			return (0);
-		else
-			return (0);
-		
+		ft_ls_print(dir->d_name);
+		if (ft_ls_isdir(ft_strjoin(path, dir->d_name)))
+			ft_ls_recur(ft_strjoin(path, dir->d_name));
 	}
-	else
-		return (0);
+	closedir(mydir);
 }
-	/*if (lstat(name, s)) != -1)
+
+int	main(int ac, char **av)
+{
+	if (ac == 1)
 	{
-		perror("lstat: ");
+		ft_ls_default(".");
 		return (0);
 	}
-	if (s->st_mmode )
-	if (s->st_mode & S_IFDIR)
-		return (1);
-	if (s->st_mode & S_IFREG)
-		return (0);
-	else
-		return (0);
-}*/
+	ft_ls_open_arg(av[1]);
+	return (0);
+}

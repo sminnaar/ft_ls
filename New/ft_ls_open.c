@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls_isdir.c                                      :+:      :+:    :+:   */
+/*   ft_ls_open.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 11:56:40 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/25 11:32:36 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/07/23 11:58:09 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/07/25 11:37:01 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_ls_isdir(char *name)
+void	ft_ls_open(char *path)
 {
-	struct stat *s;
-	
-	if (!(s = malloc(sizeof(stat))))
-		perror("stat");
-	if (lstat(name, s) == 0)
+	DIR				*dir;
+	struct dirent	*d;
+
+	dir = opendir(path);
+
+	while ((d = readdir(dir)) != NULL)
 	{
-		if (s->st_mode & S_IFDIR)
-			return (1);
-		else if (s->st_mode & S_IFREG)
-			return (0);
-		else
-			return (0);
-		
+		/*if (ft_ls_isdir(d->d_name))
+		{
+			if (!(file = malloc(sizeof(t_files))))
+				perror("Malloc error: ");
+			file->dir = d->d_name;
+			ft_putendl(file->dir);
+		}*/
+		if ((d->d_name) != NULL)
+		{
+			ft_putendl(d->d_name);
+		}
 	}
-	else
+	ft_putchar('\n');
+	closedir(dir);
+}
+
+int		main()
+{
+		ft_ls_open(".");
 		return (0);
 }
-	/*if (lstat(name, s)) != -1)
-	{
-		perror("lstat: ");
-		return (0);
-	}
-	if (s->st_mmode )
-	if (s->st_mode & S_IFDIR)
-		return (1);
-	if (s->st_mode & S_IFREG)
-		return (0);
-	else
-		return (0);
-}*/

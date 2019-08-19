@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 10:58:23 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/08/12 15:51:02 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/08/13 14:18:14 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	printout(char *dir, char *name)
 		perms[5] = 's';
 	if ((sbuf.st_mode & S_ISVTX) != 0)
 		perms[8] = 't';
-	printf("%s%3d %5d/%-5d ", perms, sbuf.st_nlink, sbuf.st_uid, sbuf.st_gid);
+	printf("%s%3d %5d %-5d ", perms, sbuf.st_nlink, sbuf.st_uid, sbuf.st_gid);
 	printf("%7lld %.12s ", sbuf.st_size, ctime(&sbuf.st_mtime) + 4);
 	printf("%s\n", name);
 //	printf("\nst_mode :%d\n", sbuf.st_mode);
@@ -68,6 +68,7 @@ void	list(char *name)
 	char			*newname[1024];
 	int 			i;
 	int 			j;
+	t_info			*t_info;
 
 	i = 0;
 	if ((dp = opendir(name)) == NULL)
@@ -77,7 +78,7 @@ void	list(char *name)
 	}
 	while ((dir = readdir(dp)) != NULL)
 	{
-		ft_print_long(name, dir->d_name);
+		ft_print_long(name, dir->d_name, t_info);
 		if (dir->d_ino == 0)
 			continue ;
 	//	printout(name, dir->d_name);
@@ -96,14 +97,15 @@ void	list(char *name)
 		}
 	}
 	closedir(dp);
-//	j = 0;
-//	while (j < i)
-//	{
-//		ft_putchar('\n');
-//		ft_putendl(newname[j]);
-//		list(newname[j]);
-//		++j;
-//	}
+	j = 0;
+	while (j < i)
+	{
+		ft_putchar('\n');
+		ft_putendl(newname[j]);
+		list(newname[j]);
+		++j;
+	}
+	//free(t_info);
 }
 
 int main(int ac, char **av)

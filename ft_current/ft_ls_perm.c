@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 13:33:56 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/08/12 15:52:30 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/08/13 10:04:12 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_ls_perm(struct stat sbuf, t_info *t_info)
 {
-	ft_strcpy(t_info->perm, "----------");
+	ft_memset(t_info->perm, '-', 10);
 	if ((sbuf.st_mode & S_IFMT) == S_IFDIR)
 		t_info->perm[0] = 'd';
 	if ((sbuf.st_mode & S_IFMT) == S_IFREG)
@@ -43,4 +43,5 @@ void	ft_ls_perm(struct stat sbuf, t_info *t_info)
 		t_info->perm[8] = 'w';
 	if (sbuf.st_mode & S_IXOTH)
 		t_info->perm[9] = 'x';
+	t_info->perm[10] = '\0';
 }

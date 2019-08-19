@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/08/12 11:50:22 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/08/14 12:26:08 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRC =	ft_putlongl.c \
 		ft_isupper.c \
 		ft_iswht.c \
 		ft_itoa.c \
+		ft_stoa.c \
+		ft_lltoa.c \
 		ft_lstadd.c \
 		ft_lstdel.c \
 		ft_lstdelone.c \

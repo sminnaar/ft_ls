@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 10:58:23 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/08/13 14:18:14 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:57:49 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	list(char *name)
 {
 	DIR				*dp;
 	struct dirent	*dir;
-	char			*newname[1024];
+	char			*(newname[1024]);
 	int 			i;
 	int 			j;
 	t_info			*t_info;
@@ -78,10 +78,10 @@ void	list(char *name)
 	}
 	while ((dir = readdir(dp)) != NULL)
 	{
-		ft_print_long(name, dir->d_name, t_info);
+//		ft_print_long(name, dir->d_name, t_info);
 		if (dir->d_ino == 0)
 			continue ;
-	//	printout(name, dir->d_name);
+		printout(name, dir->d_name);
 		if (dir->d_name[0] != '.')
 		{
 //			printout(name, dir->d_name);
@@ -101,7 +101,8 @@ void	list(char *name)
 	while (j < i)
 	{
 		ft_putchar('\n');
-		ft_putendl(newname[j]);
+		ft_putstr(newname[j]);
+		ft_putendl(":");
 		list(newname[j]);
 		++j;
 	}

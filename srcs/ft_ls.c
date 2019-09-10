@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:13:54 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 17:46:21 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 17:59:58 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int		main(int argc, char **argv)
 	if (!argv[i--])
 	{
 		ft_dirs(&flags, ".");
-		sleep(30);
 		return (1);
 	}
 	ft_errors(&flags, argv + i);
@@ -110,6 +109,5 @@ int		main(int argc, char **argv)
 			ft_dirs(&flags, path);
 		}
 	}
-	sleep(30);
 	return (1);
 }

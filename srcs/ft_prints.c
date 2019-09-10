@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:16:47 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 17:27:51 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:48:37 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		ft_prints(int *flags, t_dirs *dirs)
 		ft_printf_("\n%s:\n", dirs->root);
 	if (*flags & F_L && !(*flags & F_REG) && dirs->cool)
 		ft_printf_("%s %d\n", "total", dirs->total);
-	F_SET(*flags, F_0, F_P);
+	(((*flags & F_M) || (*flags & F_RR))) ? (*flags |= F_P) : 0;
 	list = (*flags & F_R) ? dirs->last : dirs->list;
 	while (list && list->name && dirs->cool)
 	{

@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:13:54 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 18:19:14 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:50:49 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_ls_file(int *flags, char **argv)
 		ft_sorts(flags, dirs);
 	ft_prints(flags, dirs);
 	ft_sort_clean(dirs);
-	F_SET(*flags, F_REG, F_P);
+	F_SET(*flags, (F_REG), F_0);
 }
 
 char	*ft_ls_path(char *path, char *d_name)

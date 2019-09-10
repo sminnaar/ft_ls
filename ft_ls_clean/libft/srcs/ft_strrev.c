@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 17:47:39 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/09/10 17:47:41 by sminnaar         ###   ########.fr       */
+/*   Created: 2019/09/10 17:47:51 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 17:47:52 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_strrev(char *s)
 {
-	char	out[12];
-	char	*new;
-	long	x;
-	size_t	i;
+	char temp;
+	char *end;
+	char *start;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	else if (n < 0)
-		x = n * -1;
-	else
-		(x = n);
-	i = 0;
-	while (x > 0)
+	if (s)
 	{
-		out[i++] = (x % 10) + 48;
-		x /= 10;
+		start = s;
+		end = (s + (ft_strlen(s) - 1));
+		while (start < end)
+		{
+			temp = *start;
+			*start++ = *end;
+			*end-- = temp;
+		}
 	}
-	if (n < 0)
-		out[i++] = '-';
-	out[i] = '\0';
-	if (!(new = ft_strnew(ft_strlen(out))))
-		return (NULL);
-	return (new = ft_strcpy(new, ft_strrev(out)));
+	return (s);
 }

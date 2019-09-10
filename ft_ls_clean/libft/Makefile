@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/09/10 16:32:25 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/09/10 17:44:35 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,7 @@ SRC =	ft_printf_.c \
 		ft_strnew.c \
 		ft_strnstr.c \
 		ft_strrchr.c \
+		ft_strrev.c \
 		ft_strsplit.c \
 		ft_strstr.c \
 		ft_strsub.c \

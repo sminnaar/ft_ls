@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 15:20:31 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/09/10 16:26:06 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 17:45:27 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int					ft_islower(int c);
 int					ft_iswht(char c);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
+char				*ft_strrev(char *s);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
 void				ft_strclr(char *s);

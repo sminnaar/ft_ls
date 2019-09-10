@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/25 00:38:18 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:08 by tcajee           ###   ########.fr       */
+/*   Created: 2019/06/20 16:39:11 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:06:23 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *nw)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (alst)
+	if (alst != NULL)
 	{
-		nw->next = *alst;
-		*alst = nw;
+		new->next = *alst;
+		*alst = new;
 	}
 }

@@ -3,36 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 16:03:32 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:10 by tcajee           ###   ########.fr       */
+/*   Created: 2019/06/03 12:23:03 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:12:52 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	*ft_strtrim(char const *s)
+char	*ft_strtrim(const char *s)
 {
-	const char	*start;
-	const char	*end;
-	char		*new;
-	size_t		len;
+	char	*nstr;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
-	new = NULL;
-	if (s)
+	k = 0;
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (ft_iswht(s[i]))
+		i++;
+	if (s[i] == '\0')
+		return (ft_strcpy(ft_memalloc(sizeof(char) * 2), ""));
+	j = ft_strlen(s) - 1;
+	while (ft_iswht(s[j]))
+		j--;
+	if (!(nstr = (char *)ft_memalloc(sizeof(char) * (j - i + 2))))
+		return (NULL);
+	while (k < j - i + 1)
 	{
-		len = 0;
-		end = (s + (ft_strlen(s)));
-		while (ft_isspace(*s) && *s)
-			s++;
-		start = s;
-		while (ft_isspace(*(end - 1)) && end != s)
-			end--;
-		while (s++ != end)
-			len++;
-		if (!(new = ft_strsub(start, 0, len)))
-			return (NULL);
+		nstr[k] = s[i + k];
+		k++;
+		nstr[k] = '\0';
 	}
-	return (new);
+	return (nstr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 14:38:11 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:08 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/19 14:06:48 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:05:12 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	ft_isascii(int c)
 {
-	return (c <= 127 && c >= 0);
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

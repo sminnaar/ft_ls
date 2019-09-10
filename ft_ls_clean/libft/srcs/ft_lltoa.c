@@ -6,13 +6,13 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:23:09 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/08/29 14:30:42 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:06:17 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	*ft_lltoa(long long int n)
+char	*ft_lltoa(long long n)
 {
 	char	*nstr;
 

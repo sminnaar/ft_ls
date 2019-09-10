@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/08 16:17:37 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:08 by tcajee           ###   ########.fr       */
+/*   Created: 2019/06/20 17:06:27 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:06:54 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*head;
-	t_list	*copy;
-	t_list	*next;
+	t_list *new;
 
-	head = NULL;
-	if (lst && f)
+	if (f != NULL && lst != NULL)
 	{
-		copy = f(lst);
-		if (!(next = ft_lstnew(copy->content, copy->content_size)))
-			return (NULL);
-		head = next;
-		lst = lst->next;
-		while (lst)
-		{
-			copy = f(lst);
-			if (!(next->next = ft_lstnew(copy->content, copy->content_size)))
-				return (NULL);
-			next = next->next;
-			lst = lst->next;
-		}
+		new = f(lst);
+		if (new != NULL && lst->next != NULL)
+			new->next = ft_lstmap(lst->next, f);
+		return (new);
 	}
-	return (head);
+	return (NULL);
 }

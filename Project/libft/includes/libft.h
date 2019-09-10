@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 15:20:31 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/07/17 15:57:03 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 15:53:53 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
+# include <ft_ls.h>
+# include <ft_printf_.h>
 
 # define BUFF_SIZE 1
 # define FD_MAX 1024

@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 12:28:11 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:10 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/29 14:01:11 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:12:34 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(const char *s, char c)
 {
-	char		**array;
-	char		**insert;
-	const char	*start;
-	size_t		len;
-	size_t		words;
+	size_t	i;
+	size_t	j;
+	size_t	wds;
+	char	**n;
 
-	array = NULL;
-	if (s)
+	i = 0;
+	wds = 0;
+	if (!s || (!(n = (char **)malloc(sizeof(char *) * (ft_cntwrd(s, c)) + 1))))
+		return (NULL);
+	while (s[i])
 	{
-		words = ft_strwcount(s, c);
-		if (!(array = (char **)malloc(words * sizeof(char *) + 1)))
-			return (NULL);
-		insert = array;
-		while (words--)
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[i] && s[i] != c)
+			i++;
+		if (i > j)
 		{
-			start = ft_strwnext(s, c);
-			len = ft_strwlen(start, c);
-			if (!(*insert++ = ft_strsub(start, 0, len)))
-				return (NULL);
-			s = (start + len);
+			n[wds] = ft_strndup(s + j, i - j);
+			wds++;
 		}
-		*insert = NULL;
 	}
-	return (array);
+	n[wds] = NULL;
+	return (n);
 }

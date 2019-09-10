@@ -3,29 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 10:53:05 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:10 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/31 13:10:50 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:12:47 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t n)
+char	*ft_strsub(const char *s, unsigned int start, size_t len)
 {
-	char	*new;
+	char	*nstr;
 	size_t	i;
 
-	new = NULL;
-	if (s)
+	if (!s || !(nstr = (char *)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		i = -1;
-		if (!(new = (char *)malloc(sizeof(char) * n + 1)))
-			return (NULL);
-		while (++i < n && s[i])
-			new[i] = s[start + i];
-		new[i] = '\0';
+		nstr[i] = s[start + i];
+		++i;
+		nstr[i] = '\0';
 	}
-	return (new);
+	return (nstr);
 }

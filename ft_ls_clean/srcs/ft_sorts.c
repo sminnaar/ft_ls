@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:16:47 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/09 17:21:56 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/10 12:57:21 by tcajee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_sort_clean(t_dirs *dirs)
 	t_info	*list;
 	t_info	*next;
 
-// ft_putendl("			CLEAN");
-// ft_putendl("-----------------------------------");
 	if (dirs)
 	{
 		list = dirs->list;
@@ -35,159 +33,110 @@ void	ft_sort_clean(t_dirs *dirs)
 		free(dirs->root);
 		free(dirs);
 	}
- /* ft_putendl("			SORT_CLEAN END"); */
- /* ft_putendl("-----------------------------------"); */
 }
 
 int		ft_sort_comp(int *flags, t_info *a, t_info *b)
 {
 	if (*flags & F_T)
 	{
-
 		if (a->s_stat.st_mtimespec.tv_sec == b->s_stat.st_mtimespec.tv_sec)
 		{
-			if (a->s_stat.st_mtimespec.tv_nsec != b->s_stat.st_mtimespec.tv_nsec)
-				return (a->s_stat.st_mtimespec.tv_nsec < b->s_stat.st_mtimespec.tv_nsec);
-			else
-				return (ft_strcmp(a->name, b->name));
+			return (a->s_stat.st_mtimespec.tv_nsec
+			!= b->s_stat.st_mtimespec.tv_nsec) ?
+			(a->s_stat.st_mtimespec.tv_nsec < b->s_stat.st_mtimespec.tv_nsec) :
+			(ft_strcmp(a->name, b->name));
 		}
 		else
-			return (a->s_stat.st_mtimespec.tv_sec < b->s_stat.st_mtimespec.tv_sec);
-	
-		
-		
-		/* else if (a->s_stat.st_mtimespec.tv_nsec != b->s_stat.st_mtimespec.tv_nsec) */
-		/* 	return (a->s_stat.st_mtimespec.tv_nsec < b->s_stat.st_mtimespec.tv_nsec); */
-		/* else */
-		/* 	return (a->s_stat.st_mtimespec.tv_sec < b->s_stat.st_mtimespec.tv_sec); */
-
+			return (a->s_stat.st_mtime < b->s_stat.st_mtime);
 	}
-	else if (*flags & F_U)
+	else if ((*flags & F_U) && !(*flags & F_L))
 	{
 		if (a->s_stat.st_atimespec.tv_sec == b->s_stat.st_atimespec.tv_sec)
 		{
-			if (a->s_stat.st_atimespec.tv_nsec != b->s_stat.st_atimespec.tv_nsec)
-				return (a->s_stat.st_atimespec.tv_nsec < b->s_stat.st_atimespec.tv_nsec);
-			else
-				return (ft_strcmp(a->name, b->name));
+			return (a->s_stat.st_mtime != b->s_stat.st_mtimespec.tv_nsec) ?
+			(a->s_stat.st_mtimespec.tv_nsec < b->s_stat.st_mtimespec.tv_nsec) :
+			(ft_strcmp(a->name, b->name));
 		}
 		else
-			return (a->s_stat.st_atimespec.tv_sec < b->s_stat.st_atimespec.tv_sec);
-		
-		
-		/* if (a->s_stat.st_atimespec.tv_sec == b->s_stat.st_atimespec.tv_sec) */
-		/* { */
-		/* 	if (a->s_stat.st_atimespec.tv_nsec == b->s_stat.st_atimespec.tv_nsec) */
-		/* 		return (ft_strcmp(a->name, b->name)); */
-		/* } */
-		/* else if (a->s_stat.st_atimespec.tv_nsec != b->s_stat.st_atimespec.tv_nsec) */
-		/* 	return (a->s_stat.st_atimespec.tv_nsec < b->s_stat.st_atimespec.tv_nsec); */
-		/* else */
-		/* 	return (a->s_stat.st_atimespec.tv_sec < b->s_stat.st_atimespec.tv_sec); */
-
+			return (a->s_stat.st_atime < b->s_stat.st_atime);
 	}
 	return (ft_strcmp(a->name, b->name));
 }
 
-t_dirs *ft_sort_merge(int *flags, t_dirs *dirs)
+void	ft_sort_ins(int *flags, t_dirs *dirs, t_sort *s)
 {
-t_info *list;
-t_info *temp;
-t_info *next;
-t_info *tail;
-int insize;
-int nmerges;
-int listsize;
-int nextsize;
-int i;
-insize = 1;
-
-	while (insize)
+	while (s->l_size > 0 || (s->n_size > 0 && s->next))
 	{
-		list = dirs->list;
-		dirs->list = NULL;
-		tail = NULL;
-		nmerges = 0;
-		while (list)
+		if (s->l_size == 0 && s->n_size--)
 		{
-			++nmerges;
-			next = list;
-			listsize = 0;
-			i = 0;
-			while (i < insize)
-			{
-				listsize++;
-				next = next->next;
-				if (!next)
-					break;
-				i++;
-			}
-			nextsize = insize;
-			while (listsize > 0 || (nextsize > 0 && next))
-			{
-				/* decide whether next element of merge comes from p or q */
-				if (listsize == 0)
-				{
-					/* p is empty; e must come from q. */
-					temp = next;
-					next = next->next;
-					nextsize--;
-				}
-				else if (nextsize == 0 || !next)
-				{
-					/* q is empty; e must come from p. */
-					temp = list;
-					list = list->next;
-					listsize--;
-				}
-				else if (ft_sort_comp(flags, list, next) <= 0)
-				{
-					/* First element of p is lower (or same);
-					 * * e must come from p. */
-					temp = list;
-					list = list->next;
-					listsize--;
-				}
-				else
-				{
-					/* First element of q is lower; e must come from q. */
-					temp = next;
-					next = next->next;
-					nextsize--;
-				}
-				/* add the next element to the merged list */
-				if (tail)
-					tail->next = temp;
-				else
-					dirs->list = temp;
-				temp->prev = tail;
-				tail = temp;
-			}
-			/* now p has stepped `insize' places along, and q has too */
-			list = next;
+			s->temp = s->next;
+			s->next = s->next->next;
 		}
-		/* dirs->list->prev = tail; */
-		if (tail)
+		else if ((s->n_size == 0 || !s->next) && s->l_size--)
 		{
-			tail->next = NULL;
-			dirs->last = tail;
+			s->temp = s->list;
+			s->list = s->list->next;
 		}
-		if (nmerges <= 1)
-			break;
-		insize *= 2;
+		else if (ft_sort_comp(flags, s->list, s->next) <= 0 && s->l_size--)
+		{
+			s->temp = s->list;
+			s->list = s->list->next;
+		}
+		else if (s->n_size-- && !!(s->temp = s->next))
+			s->next = s->next->next;
+		(s->tail) ? s->tail->next = s->temp : NULL;
+		!(s->tail) ? dirs->list = s->temp : NULL;
+		s->temp->prev = s->tail;
+		s->tail = s->temp;
 	}
-	return (dirs);
+}
+
+void	ft_sort_merge(int *flags, t_dirs *dirs, t_sort *sort)
+{
+	int		i;
+
+	while (sort->list)
+	{
+		i = 0;
+		++sort->m_count;
+		sort->next = sort->list;
+		sort->l_size = 0;
+		while (i < sort->i_size)
+		{
+			sort->l_size++;
+			sort->next = sort->next->next;
+			if (!sort->next)
+				break ;
+			i++;
+		}
+		sort->n_size = sort->i_size;
+		ft_sort_ins(flags, dirs, sort);
+		sort->list = sort->next;
+	}
 }
 
 void	ft_sorts(int *flags, t_dirs *dirs)
 {
+	t_sort	*sort;
 
-// ft_putendl("			SORT");
-// ft_putendl("-----------------------------------");
-	dirs = ft_sort_merge(flags, dirs);
-
- /* ft_putendl("			SORT END"); */
- /* ft_putendl("-----------------------------------"); */
+	if (!(sort = (t_sort *)malloc(sizeof(t_sort))))
+		return ;
+	sort->i_size = 1;
+	while (sort->i_size)
+	{
+		sort->list = dirs->list;
+		dirs->list = NULL;
+		sort->tail = NULL;
+		sort->m_count = 0;
+		ft_sort_merge(flags, dirs, sort);
+		if (sort->tail)
+		{
+			sort->tail->next = NULL;
+			dirs->last = sort->tail;
+		}
+		if (sort->m_count <= 1)
+			break ;
+		sort->i_size *= 2;
+	}
+	free(sort);
 }
-
-

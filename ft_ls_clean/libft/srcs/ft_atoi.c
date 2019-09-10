@@ -3,34 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 14:52:36 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:08 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/19 14:38:03 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:03:52 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
-	long		res;
-	long		sign;
-	const char	*input;
+	int		out;
+	int		p_n;
+	size_t	i;
 
-	input = str;
-	res = 0;
-	sign = 1;
-	while (ft_isspace(*input))
-		input++;
-	if (*input == '+')
-		input++;
-	else if (*input == '-')
+	out = 0;
+	p_n = 1;
+	i = 0;
+	while (ft_iswht(nptr[i]))
+		i++;
+	if (nptr[i] == 43 || nptr[i] == 45)
 	{
-		sign = -1;
-		input++;
+		if (nptr[i] == 45)
+			p_n = -1;
+		i++;
 	}
-	while (*input && ft_isdigit(*input))
-		res = res * 10 + (*input++ - '0');
-	return ((int)res * (int)sign);
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+	{
+		out = out * 10 + nptr[i] - 48;
+		i++;
+	}
+	return ((int)(out * p_n));
 }

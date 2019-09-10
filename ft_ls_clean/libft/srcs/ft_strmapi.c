@@ -3,33 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/30 09:55:21 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:10 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/31 12:34:20 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:11:35 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	char	*cursor;
-	char	*new;
-	size_t	len;
+	char	*nstr;
 	size_t	i;
 
-	new = NULL;
-	if (s && f)
+	i = 0;
+	if (!s || !(nstr = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (NULL);
+	while (s[i])
 	{
-		i = 0;
-		len = ft_strlen(s) + 1;
-		if (!(new = (char *)malloc(sizeof(char) * len)))
-			return (NULL);
-		cursor = new;
-		while (*s)
-			*cursor++ = f(i++, *s++);
-		*cursor = '\0';
+		nstr[i] = f(i, s[i]);
+		i++;
 	}
-	return (new);
+	nstr[i] = '\0';
+	return (nstr);
 }

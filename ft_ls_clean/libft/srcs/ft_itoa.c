@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 15:38:25 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 10:12:53 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/27 12:07:31 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:06:01 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,24 @@
 
 char	*ft_itoa(int n)
 {
-	char	out[12];
-	char	*new;
-	long	x;
-	size_t	i;
+	char	*nstr;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	else if (n < 0)
-		x = n * -1;
-	else
-		(x = n);
-	i = 0;
-	while (x > 0)
-	{
-		out[i++] = (x % 10) + 48;
-		x /= 10;
-	}
-	if (n < 0)
-		out[i++] = '-';
-	out[i] = '\0';
-	if (!(new = ft_strnew(ft_strlen(out))))
+	if (!(nstr = (char *)ft_memalloc(sizeof(char) * 2)))
 		return (NULL);
-	return (new = ft_strcpy(new, ft_strrev(out)));
+	if (n == -2147483648)
+		return (ft_strcpy(nstr, "-2147483648"));
+	if (n < 0)
+	{
+		nstr[0] = '-';
+		nstr[1] = '\0';
+		nstr = ft_strjoin(nstr, ft_itoa(-n));
+	}
+	else if (n >= 10)
+		nstr = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
+	else if (n >= 0 && n <= 9)
+	{
+		nstr[0] = n + '0';
+		nstr[1] = '\0';
+	}
+	return (nstr);
 }

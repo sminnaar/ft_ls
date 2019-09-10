@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/28 08:56:49 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:09 by tcajee           ###   ########.fr       */
+/*   Created: 2019/05/29 08:44:04 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/09/10 16:10:03 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 char	*ft_strcat(char *s1, const char *s2)
 {
-	ft_strcpy(s1 + ft_strlen(s1), s2);
+	char *dst;
+
+	dst = s1;
+	while (*dst)
+		++dst;
+	while (*s2)
+	{
+		*dst = *s2;
+		++dst;
+		++s2;
+		*dst = '\0';
+	}
 	return (s1);
 }

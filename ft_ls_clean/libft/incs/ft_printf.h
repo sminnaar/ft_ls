@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_.h                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:04:29 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/09/03 17:12:42 by tcajee           ###   ########.fr       */
+/*   Updated: 2019/09/10 17:05:39 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	ft_l(int width, va_list list);
 void	ft_s(int width, va_list list);
 void	ft_x(int width, va_list list);
 int		ft_format_width(va_list list);
+char	*ft_lltoa(long long n);
 
 #endif

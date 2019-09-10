@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
+/*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 15:48:09 by tcajee            #+#    #+#             */
-/*   Updated: 2019/08/20 09:43:09 by tcajee           ###   ########.fr       */
+/*   Created: 2019/06/03 15:20:22 by sminnaar          #+#    #+#             */
+/*   Updated: 2019/06/03 15:21:37 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
-void	ft_putendl(char const *s)
+void	ft_putendl(const char *s)
 {
-	ft_putendl_fd(s, 1);
+	ft_putstr(s);
+	ft_putchar('\n');
 }

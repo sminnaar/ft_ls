@@ -6,7 +6,7 @@
 /*   By: tcajee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 16:23:43 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 15:02:51 by tcajee           ###   ########.fr       */
+/*   Updated: 2019/09/11 12:49:09 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,15 @@ int		ft_dir_fill(int *flags, t_dirs *dirs, char *path)
 	list = dirs->list;
 	while ((s_dir = readdir(dir)) != NULL)
 	{
-		if (!list)
-			list = ft_dir_add(dirs->last);
+		(!list) ? list = ft_dir_add(dirs->last) : 0;
 		dirs->last = list;
 		list->name = ft_strdup(s_dir->d_name);
 		list->path = ft_ls_path(path, s_dir->d_name);
 		if ((lstat(list->path, &list->s_stat)) == -1)
 			dirs->cool = 0;
 		dirs->total += list->s_stat.st_blocks;
+		(list->name[0] == '.' && !(*flags & F_A)) ?
+			dirs->total -= list->s_stat.st_blocks : 0;
 		(*flags & F_L) ? ft_dir_form(flags, dirs) : NULL;
 		list = list->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 11:36:46 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 15:43:22 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/11 14:08:27 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	ft_error_dir(char *path)
 
 int	ft_error_perm(int *flags, char *path, t_dirs *dirs)
 {
-	ft_putendl("");
+	if ((*flags & F_P))
+		ft_putendl("");
 	if (*flags & F_RR)
 	{
 		ft_putstr_fd(path, 2);

@@ -121,9 +121,9 @@ void	ft_dirs(int *flags, char *path)
 		list = (*flags & F_R) ? dirs->last : dirs->list;
 		while (list)
 		{
-			if ((list->name[0] == '.' && list->name[1] == '\0') ||
-				((list->name[0] == '.' && list->name[2] == '\0') &&
-				list->name[1] == '.'))
+			if (((list->name[0] == '.' && list->name[1] == '\0') || ((
+				list->name[0] == '.' && list->name[2] == '\0') && list->name[1]
+				== '.')) || (!(*flags & F_A) && list->name[0] == '.'))
 			{
 				list = (*flags & F_R) ? list->prev : list->next;
 				continue;

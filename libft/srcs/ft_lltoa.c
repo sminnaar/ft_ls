@@ -6,7 +6,7 @@
 /*   By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 12:23:09 by sminnaar          #+#    #+#             */
-/*   Updated: 2019/09/10 16:06:17 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/11 12:05:49 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,29 @@
 
 char	*ft_lltoa(long long n)
 {
-	char	*nstr;
+	char	out[20];
+	char	*new;
+	long	x;
+	size_t	i;
 
-	if (!(nstr = (char *)ft_memalloc(sizeof(char) * 2)))
-		return (NULL);
-	if (n == -2147483648)
-		return (ft_strcpy(nstr, "-2147483648"));
+	if (n == -922337203685477580)
+		return (ft_strdup("-922337203685477580"));
+	else if (n == 0)
+		return (ft_strdup("0"));
+	else if (n < 0)
+		x = n * -1;
+	else
+		(x = n);
+	i = 0;
+	while (x > 0)
+	{
+		out[i++] = (x % 10) + 48;
+		x /= 10;
+	}
 	if (n < 0)
-	{
-		nstr[0] = '-';
-		nstr[1] = '\0';
-		nstr = ft_strjoin(nstr, ft_itoa(-n));
-	}
-	else if (n >= 10)
-		nstr = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	else if (n >= 0 && n <= 9)
-	{
-		nstr[0] = n + '0';
-		nstr[1] = '\0';
-	}
-	return (nstr);
+		out[i++] = '-';
+	out[i] = '\0';
+	if (!(new = ft_strnew(ft_strlen(out))))
+		return (NULL);
+	return (new = ft_strcpy(new, ft_strrev(out)));
 }

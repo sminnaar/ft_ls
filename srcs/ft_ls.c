@@ -6,18 +6,40 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 13:13:54 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/10 18:50:49 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/11 11:03:16 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/incs/libft.h"
+
+int		ft_ls_print(int *flags, t_dirs *dirs)
+{
+	t_info	*list;
+
+	list = (*flags & F_R) ? dirs->last : dirs->list;
+	while (list && list->name && dirs->cool)
+	{
+		if (!(*flags & F_A) && list->name[0] == '.')
+			if (!(*flags & F_REG))
+			{
+				list = (*flags & F_R) ? list->prev : list->next;
+				continue;
+			}
+		if (*flags & F_1)
+			ft_print_def(flags, list);
+		else if (*flags & F_L)
+			ft_print_lst(flags, dirs, list);
+		list = (*flags & F_R) ? list->prev : list->next;
+		F_SET(*flags, F_0, F_REG);
+	}
+	return (1);
+}
 
 void	ft_ls_file(int *flags, char **argv)
 {
 	t_dirs	*dirs;
 	t_info	*list;
 
-	F_SET(*flags, F_0, F_REG);
 	dirs = ft_dir_new(*(argv + 1));
 	list = dirs->list;
 	while (*++argv)
@@ -34,9 +56,8 @@ void	ft_ls_file(int *flags, char **argv)
 	}
 	if (!(*flags & F_F))
 		ft_sorts(flags, dirs);
-	ft_prints(flags, dirs);
+	ft_ls_print(flags, dirs);
 	ft_sort_clean(dirs);
-	F_SET(*flags, (F_REG), F_0);
 }
 
 char	*ft_ls_path(char *path, char *d_name)

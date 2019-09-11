@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 14:16:47 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/11 14:59:34 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/11 15:33:26 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ void	ft_print_def(int *flags, t_info *list)
 		if (ft_ls_check(list->path) == 2)
 			ft_printf_("/");
 		else if ((list->s_stat.st_mode & S_IFMT) == S_IFLNK)
-		{
-			ft_printf_("@ -> %s", path);
-			(*flags & F_L && !(*flags & F_1)) ? ft_printf_("->") : 0;
-		}
+			(*flags & F_L) ? ft_printf_("@ -> %s", path) : ft_printf_("@");
 		else if ((list->s_stat.st_mode & S_IFMT) == S_IFIFO)
 			ft_printf_("|");
 		else if ((list->s_stat.st_mode & S_IFMT) == S_IFSOCK)

@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/09/11 13:50:53 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/09/11 15:17:06 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,10 +114,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@echo "Object files created"
+	@echo "Compiling: $(NAME)"
 	@ar rc $(NAME) $(OBJ)
-	@echo "$(NAME) Compiled"
+	@echo "Indexing: $(NAME)"
 	@ranlib $(NAME)
-	@echo "$(NAME) Indexed"
 
 $(OBJ_DIR) :
 	@mkdir -p $(OBJ_DIR)
@@ -132,7 +132,8 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME) and build Cleaned"
+	@echo "Cleaned: libft/build"
+	@echo "Cleaned: $(NAME)"
 
 re: fclean all
 

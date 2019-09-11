@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/11 13:52:45 by sminnaar          #+#    #+#              #
-#    Updated: 2019/09/11 13:52:48 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/09/11 15:16:50 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ $(LIBFT):
 clean:
 	@rm -rf $(BUILDDIR)
 	@make -C $(LIBDIR) clean
-	@echo "$(NAME) and build Cleaned"
+	@echo "Cleaned: ft_ls/build"
+	@echo "Cleaned: $(NAME)"
 
 # Getting rid of the project file
 fclean: clean

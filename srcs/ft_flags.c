@@ -6,7 +6,7 @@
 /*   By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 14:11:56 by tcajee            #+#    #+#             */
-/*   Updated: 2019/09/11 12:57:08 by sminnaar         ###   ########.fr       */
+/*   Updated: 2019/09/11 15:15:45 by sminnaar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_flag_check(int *flags, char flag)
 	else if (flag == 'd')
 		return (*flags = (*flags & ~F_RR) | F_D);
 	else if (flag == 'o')
-		return (*flags = (*flags & ~F_0) | F_O);
+		return (*flags = (*flags & ~F_1) | (F_L + F_O));
 	else if (flag == 'F')
 		return (*flags = (*flags & ~F_0) | F_FF);
 	return (ft_flag_check_(flags, flag));

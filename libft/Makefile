@@ -6,7 +6,7 @@
 #    By: sminnaar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/19 15:17:25 by sminnaar          #+#    #+#              #
-#    Updated: 2019/09/10 17:44:35 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/09/11 13:50:53 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ $(OBJ_DIR) :
 	@mkdir -p $(dir $(OBJ))
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@gcc $(FLAG) -c $< -o $@ -I $(INC_DIR)
+	@clang $(FLAG) -c $< -o $@ -I $(INC_DIR)
 
 clean:
 	@rm -f $(OBJ)
@@ -132,7 +132,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME) and obj Cleaned"
+	@echo "$(NAME) and build Cleaned"
 
 re: fclean all
 
@@ -140,8 +140,4 @@ del: fclean
 	@rm -f libft.h.gch
 	@rm -f *.out
 
-c:
-	@gcc -v $(FLAG) main.c libft.a
-
-.PHONY: all, clean, fclean, re, del, c
-
+.PHONY: all, clean, fclean, re, del

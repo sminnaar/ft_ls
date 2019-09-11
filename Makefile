@@ -6,7 +6,7 @@
 #    By: tcajee <tcajee@student.wethinkcode.co.za>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/29 13:11:02 by tcajee            #+#    #+#              #
-#    Updated: 2019/09/11 13:28:54 by sminnaar         ###   ########.fr        #
+#    Updated: 2019/09/11 13:48:31 by sminnaar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,6 @@ SRCNAMES	= ft_dirs.c \
 			  ft_sorts.c \
 
 SRC			= $(addprefix $(SRCDIR), $(SRCNAMES))
-# SRC			= ./srcs/ft_dirs.c ./srcs/ft_errors.c ./srcs/ft_flags.c \
-			  ./srcs/ft_ls.c ./srcs/ft_prints.c ./srcs/ft_sorts.c
 BUILDDIR	= ./build/
 BUILDOBJS	= $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
 
@@ -62,6 +60,7 @@ $(LIBFT):
 clean:
 	@rm -rf $(BUILDDIR)
 	@make -C $(LIBDIR) clean
+	@echo "$(NAME) and build Cleaned"
 
 # Getting rid of the project file
 fclean: clean

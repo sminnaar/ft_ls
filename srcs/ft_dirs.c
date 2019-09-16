@@ -94,8 +94,7 @@ int		ft_dir_fill(int *flags, t_dirs *dirs, char *path)
 		dirs->last = list;
 		list->name = ft_strdup(s_dir->d_name);
 		list->path = ft_ls_path(path, s_dir->d_name);
-		if ((lstat(list->path, &list->s_stat)) == -1)
-			dirs->cool = 0;
+		((lstat(list->path, &list->s_stat)) == -1) ? dirs->cool = 0 : 0;
 		dirs->total += list->s_stat.st_blocks;
 		(list->name[0] == '.' && !(*flags & F_A)) ?
 			dirs->total -= list->s_stat.st_blocks : 0;
@@ -129,7 +128,7 @@ void	ft_dirs(int *flags, char *path)
 				list = (*flags & F_R) ? list->prev : list->next;
 				continue;
 			}
-			else if (ft_ls_check(list->path) == 2)
+			else if (ft_ls_check(list->path) == 2  || ft_ls_check(list->path) == 5)
 				ft_dirs(flags, list->path);
 			list = (*flags & F_R) ? list->prev : list->next;
 		}

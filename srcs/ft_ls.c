@@ -97,7 +97,10 @@ int		ft_ls_check(char *path)
 	if ((s_stat.st_mode & S_IFMT) == S_IFREG)
 		return (1);
 	if ((s_stat.st_mode & S_IFMT) == S_IFDIR)
-		return (2);
+	{
+		return((!(s_stat.st_mode & S_IRGRP) || !(s_stat.st_mode & S_IROTH)) ? 
+		 	5 : 2);
+	}
 	if ((s_stat.st_mode & S_IFMT) == S_IFLNK)
 		return (3);
 	if ((s_stat.st_mode & S_IFMT) == S_IFCHR)
@@ -113,22 +116,20 @@ int		main(int argc, char **argv)
 
 	if ((argc - (i = ft_flags(&flags, argv)) > 1))
 		F_SET(flags, F_0, F_M);
-	if (!argv[i--])
+	(!argv[i]) ? ft_dirs(&flags, ".") : 0;
+	(!argv[i]) ? exit(1) : NULL;
+	ft_errors(&flags, argv + i - 1);
+	ft_ls_file(&flags, argv + i -1);
+	i = (flags & F_R) ? argc - 1 : argc -i -1;
+	while (argv[i])
 	{
-		ft_dirs(&flags, ".");
-		return (1);
-	}
-	ft_errors(&flags, argv + i);
-	ft_ls_file(&flags, argv + i);
-	while (argv[++i])
-	{
-		if (ft_ls_check(argv[i]) == 2)
+		if (ft_ls_check(argv[i]) == 2 || ft_ls_check(argv[i]) == 5)
 			ft_dirs(&flags, argv[i]);
 		else if (ft_ls_check(argv[i]) == 3)
 		{
 			readlink(argv[i], ft_memset(path, 0, PATH_MAX), PATH_MAX);
 			ft_dirs(&flags, path);
 		}
+		i = (flags & F_R) ? (i - 1) : (i + 1);
 	}
-	return (1);
-}
+	return (1);}

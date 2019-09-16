@@ -19,23 +19,40 @@ int	ft_error_dir(char *path)
 	ft_putendl_fd(": No such file or directory", 2);
 	return (0);
 }
-
-int	ft_error_perm(int *flags, char *path, t_dirs *dirs)
+int		ft_error_perm(int *flags, char *path, t_dirs *dir)
 {
-	if ((*flags & F_P))
-		ft_putendl("");
-	if (*flags & F_RR)
+	(*flags & F_P || *flags & F_REG) ? ft_putendl("") : 0;
+	if (*flags & F_P || *flags & F_M)
 	{
-		ft_putstr_fd(path, 2);
-		ft_putendl_fd(":", 2);
+	ft_putstr_fd(path, 2);
+	ft_putendl_fd(":", 2);
 	}
-	ft_putstr_fd("ft_ls: ", 2);
-	ft_putstr_fd(ft_strrchr(path, '/') + 1, 2);
-	ft_putstr_fd(": ", 2);
-	perror("");
-	ft_sort_clean(dirs);
+	ft_putstr_fd("ls: ", 2);
+	(ft_strrchr(path, '/')) ? ft_putstr_fd(ft_strrchr(path, '/') + 1, 2) :
+	ft_putstr_fd(path, 2);
+	ft_putendl_fd(": Permission denied", 2);
+	(dir) ? ft_sort_clean(dir) : NULL;
+	(*flags & F_P || *flags & F_REG) ? ft_putendl_fd("", 2) : 0;
+	F_SET(*flags, F_0, F_P);
 	return (0);
 }
+
+/* int	ft_error_perm(int *flags, char *path, t_dirs *dirs) */
+/* { */
+/* 	if ((*flags & F_P)) */
+/* 		ft_putendl(""); */
+/* 	if (*flags & F_RR) */
+/* 	{ */
+/* 		ft_putstr_fd(path, 2); */
+/* 		ft_putendl_fd(":", 2); */
+/* 	} */
+/* 	ft_putstr_fd("ft_ls: ", 2); */
+/* 	ft_putstr_fd(ft_strrchr(path, '/') + 1, 2); */
+/* 	ft_putstr_fd(": ", 2); */
+/* 	perror(""); */
+/* 	(dirs) ? ft_sort_clean(dirs) : NULL; */
+/* 	return (0); */
+/* } */
 
 int	ft_error_flag(char *flag)
 {
